@@ -1,0 +1,37 @@
+@startuml Deployment
+
+frame DMZ {
+    cloud Provider
+    cloud Shared
+
+    node Router
+}
+
+frame INTERNAL {
+    node WiFi
+    node Switch
+
+    node Proxmox1
+    node Proxmox2
+    node Proxmox3
+
+    node NasController
+    database DiskPool
+
+}
+
+Provider -- Router
+Shared -- Router
+
+Router -- WiFi
+Router -- Switch
+
+
+Switch -- Proxmox1
+Switch -- Proxmox2
+Switch -- Proxmox3
+Switch -- NasController
+
+NasController -- DiskPool
+
+@enduml
