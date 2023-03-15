@@ -35,6 +35,8 @@ resource "proxmox_lxc" "k3s-masters" {
         size    = "16G"
     }
 
+    ssh_public_keys = var.ssh_public_keys
+
     ostemplate = var.lxc_template
     password = var.container_password
     target_node = var.proxmox_node
@@ -61,6 +63,8 @@ resource "proxmox_lxc" "k3s-workers" {
         storage = "local-lvm"
         size    = "16G"
     }
+
+    ssh_public_keys = var.ssh_public_keys
 
     ostemplate = var.lxc_template
     password = var.container_password
