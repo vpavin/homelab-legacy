@@ -85,6 +85,8 @@ resource "proxmox_lxc" "postgres-0" {
         size    = "50G"
     }
 
+    ssh_public_keys = var.ssh_public_keys
+
     ostemplate = var.lxc_template
     password = var.container_password
     target_node = var.proxmox_node

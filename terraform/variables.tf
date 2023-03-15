@@ -13,3 +13,4 @@ variable "lxc_template" {
 }
 
 variable "container_password" {}
+variable "ssh_public_keys" {}
