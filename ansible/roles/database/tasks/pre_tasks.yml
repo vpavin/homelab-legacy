@@ -1,0 +1,13 @@
+---
+- name: "Install packages"
+  ansible.builtin.apt: "name={{ item }} state=present"
+  with_items:
+    - "postgresql-{{ postgresql_version }}"
+    - "postgresql-client-{{ postgresql_version }}"
+    - "postgresql-contrib-{{ postgresql_version }}"
+    - python3-pip
+
+- name: "Install Python packages"
+  pip: "name={{ item }}  state=present"
+  with_items:
+    - psycopg2-binary
