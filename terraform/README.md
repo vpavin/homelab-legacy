@@ -6,9 +6,9 @@ Terraform plan to create a Kubernetes (K3s) cluster and support services.
 
 ID | Node | IP Address | Description
 -- | -- | -- | -- 
-10[1-2] | **k3s-master-[1-2]** | 192.168.1.100[1-2] | Lightweight Kubernetes (K3s) master nodes
-20[1-4] | **k3s-worker-[1-2]** | 192.168.1.200[1-2] | Lightweight Kubernetes (K3s) worker nodes
-800 | **postgres-0** | 192.168.1.50 | PostgresSQL service - for kubernetes control plane storage
+10[1-2] | **k3s-master-[1-2]** | 192.168.0.100[1-2] | Lightweight Kubernetes (K3s) master nodes
+20[1-4] | **k3s-worker-[1-2]** | 192.168.0.200[1-2] | Lightweight Kubernetes (K3s) worker nodes
+800 | **postgres-0** | 192.168.0.50 | PostgresSQL service - for kubernetes control plane storage
 
 ## Instructions
 
