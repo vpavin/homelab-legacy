@@ -26,6 +26,7 @@ resource "proxmox_lxc" "k3s-masters" {
         name = "eth0"
         bridge = "vmbr0"
         ip = "192.168.0.${count.index + 100}/24"  
+        gw = "192.168.0.10"
         firewall = true
     }
 
@@ -52,6 +53,7 @@ resource "proxmox_lxc" "k3s-workers" {
         name = "eth0"
         bridge = "vmbr0"
         ip = "192.168.0.${count.index + 200}/24"  
+        gw = "192.168.0.10"
         firewall = true
     }
 
@@ -76,7 +78,8 @@ resource "proxmox_lxc" "postgres-0" {
     network {
         name = "eth0"
         bridge = "vmbr0"
-        ip = "192.168.0.50/24"  
+        ip = "192.168.0.50/24"
+        gw = "192.168.0.10"
         firewall = true
     }
 
