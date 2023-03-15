@@ -9,7 +9,7 @@ variable "proxmox_node" {
 
 variable "lxc_template" {
     type = string
-    default = "local:vztmpl/fedora-37-default_20221119_amd64.tar.xz"
+    default = "local:vztmpl/ubuntu-22.10-standard_22.10-1_amd64.tar.zst"
 }
 
 variable "container_password" {}
