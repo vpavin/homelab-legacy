@@ -1,0 +1,16 @@
+[kube-masters]
+192.168.0.101
+192.168.0.102
+
+[kube-workers]
+192.168.0.201
+192.168.0.202
+192.168.0.203
+192.168.0.204
+
+[postgres]
+192.168.0.50
+
+[kubernetes:children]
+kube-masters
+kube-workers
