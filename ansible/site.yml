@@ -1,17 +1,26 @@
 ---
 
-- hosts: kube-masters
+# - hosts: proxmox
+#   gather_facts: false
+#   roles:
+#   - role: hypervisor
+
+- hosts: postgres
   become: yes
   roles:
-    - role: kubernetes/common
+    - role: database
+
+- hosts: kubernetes
+  become: yes
+  roles:
+  - role: kubernetes/common
+
+- hosts: kube-masters
+  become: yes
+  roles:    
     - role: kubernetes/master
 
 - hosts: kube-workers
   become: yes
   roles:
     - role: kubernetes/workers
-
-- hosts: postgres
-  become: yes
-  roles:
-    - role: database
