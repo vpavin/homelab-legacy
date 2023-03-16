@@ -26,5 +26,5 @@ Role responsible to configure a Postgres instance to hold Kubernetes control pla
 To run the playbook to entire infrastructure execute: 
 
 ```bash
-> ansible-playbook -i inventory site.yml --ask-vault-pass
+> ansible-playbook site.yml --ask-vault-pass
 ```

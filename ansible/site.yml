@@ -1,6 +1,17 @@
 ---
 
+- hosts: kube-masters
+  become: yes
+  roles:
+    - role: kubernetes/common
+    - role: kubernetes/master
+
+- hosts: kube-workers
+  become: yes
+  roles:
+    - role: kubernetes/workers
+
 - hosts: postgres
   become: yes
   roles:
-    - role: roles/database
+    - role: database
