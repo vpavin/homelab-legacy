@@ -1,5 +1,5 @@
 ---
 k3s_version: v1.25.7+k3s1
 master_ip: "{{ hostvars[groups['kube-masters'][0]]['ansible_host'] | default(groups['kube-masters'][0]) }}"
-extra_server_args: "--datastore-endpoint=\"postgresql://{{ hostvars[groups['postgres'][0]]['db_user'] }}:{{ hostvars[groups['postgres'][0]]['db_password'] }}@tcp({{ hostvars[groups['postgres'][0]]['ansible_host'] | default(groups['postgres'][0]) }}:5432)/{{ hostvars[groups['postgres'][0]]['db_name'] }}\""
+extra_server_args: "--datastore-endpoint=\"postgres://{{ hostvars[groups['postgres'][0]]['db_user'] }}:{{ hostvars[groups['postgres'][0]]['db_password'] }}@{{ hostvars[groups['postgres'][0]]['ansible_host'] | default(groups['postgres'][0]) }}:5432/{{ hostvars[groups['postgres'][0]]['db_name'] }}\""
 extra_agent_args: ""
