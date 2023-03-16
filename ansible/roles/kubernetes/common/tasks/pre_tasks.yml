@@ -32,15 +32,6 @@
     mode: "u=rwx,g=rx,o=rx"
   when: not rcfile.stat.exists
 
-- name: Add kernel modules and ensure they are loaded on boot
-  community.general.modprobe:
-    name: "{{ item }}"
-    state: present
-    persistent: present
-  with_items: 
-  - br_netfilter
-  - overlay
-
 - name: Write rc.local file
   blockinfile:
     path: /etc/rc.local
