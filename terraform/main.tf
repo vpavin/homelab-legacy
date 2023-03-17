@@ -21,6 +21,7 @@ resource "proxmox_lxc" "k3s-masters" {
     cores = 4
     memory = "2048"
     swap = "512"
+    onboot = true
 
     network {
         name = "eth0"
@@ -50,6 +51,7 @@ resource "proxmox_lxc" "k3s-workers" {
     cores = 4
     memory = "4096"
     swap = "1024"
+    onboot = true
 
     network {
         name = "eth0"
@@ -78,6 +80,7 @@ resource "proxmox_lxc" "postgres-0" {
     cores = 2
     memory = "2048"
     swap = "1024"
+    onboot = true
 
     network {
         name = "eth0"
