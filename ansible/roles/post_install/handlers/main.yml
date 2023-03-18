@@ -1,0 +1,12 @@
+---
+
+- name: reboot containers
+  shell: "pct reboot {{ item }} "
+  with_items:
+  - 100
+  - 101
+  - 200
+  - 201
+  - 202
+  - 203
+  - 800
