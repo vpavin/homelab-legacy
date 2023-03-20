@@ -8,11 +8,14 @@
       lxc.cap.drop:
       lxc.mount.auto: "proc:rw sys:rw"
       lxc.cgroup2.devices.allow: c 10:200 rwm
-  with_items:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK -- ID: {{ item }}"
+  loop:
     - 100
     - 101
     - 200
     - 201
     - 202
     - 203
-  notify: reboot containers
+  notify:
+  - reboot containers
+  - push kernel boot configuration

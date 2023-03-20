@@ -1,5 +1,8 @@
 ---
 
+- name: Execute pre-tasks
+  include_tasks: ./pre_tasks.yml
+
 - name: Enable IPv4 forwarding
   sysctl:
     name: net.ipv4.ip_forward

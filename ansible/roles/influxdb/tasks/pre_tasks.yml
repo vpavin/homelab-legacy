@@ -1,0 +1,25 @@
+---
+- name: "Install packages"
+  ansible.builtin.apt: "name={{ item }} state=present"
+  with_items:
+    - python3-pip
+
+- name: "Install Python packages"
+  pip: "name={{ item }}  state=present"
+  with_items:
+    - cryptography
+
+- name: Install GPG
+  apt: 
+    name: gpg
+    state: present
+
+- name: Import InfluxDB GPG signing key
+  apt_key:
+    url: "https://repos.influxdata.com/influxdata-archive_compat.key"
+    state: present
+
+- name: Add InfluxDB repository
+  apt_repository:
+    repo: "deb https://repos.influxdata.com/ubuntu bullseye stable"
+    state: present

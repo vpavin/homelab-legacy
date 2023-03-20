@@ -8,9 +8,13 @@
     reload: yes
   when: ansible_all_ipv6_addresses
 
+- name: Check if swap is on
+  shell: swapon -s
+  register: is_swapon
+
 - name: Disable SWAP
-  shell: |
-    swapoff -a
+  shell: swapoff -a
+  when: "is_swapon.stdout != ''"
 
 - name: Ensure swap is disabled after reboot
   replace:
@@ -44,5 +48,6 @@
     - 202
     - 203
     - 800
+    - 801
   failed_when: '"does not exist" in ret.stderr'
   changed_when: '"already running" not in ret.stderr'

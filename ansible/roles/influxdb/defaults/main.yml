@@ -1,0 +1,15 @@
+influxdb_bucket: proxmox
+influxdb_org: pavoni
+influxdb_enc_algo: Ed25519
+
+influxdb_systemd: /lib/systemd/system/influxdb.service
+
+influxdb_pvt_dir: /etc/influxdb/private
+influxdb_csr_dir: /etc/influxdb/csr
+influxdb_certs_dir: /etc/influxdb/certs
+
+influxdb_pem: ansible.com.pem
+influxdb_csr: ansible.com.csr
+influxdb_crt: ansible.com.crt
+
+selfsigned: false

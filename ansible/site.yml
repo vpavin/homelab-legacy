@@ -9,6 +9,11 @@
   roles:
   - role: database
 
+- hosts: influxdb
+  become: yes
+  roles:
+  - role: influxdb
+
 - hosts: kubernetes
   become: yes
   roles:

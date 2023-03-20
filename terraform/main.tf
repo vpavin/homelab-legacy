@@ -9,9 +9,11 @@ terraform {
 
 provider "proxmox" {
   pm_api_url = var.proxmox_api
-  pm_api_token_id = var.proxmox_user
-  pm_api_token_secret = var.proxmox_token
+#   pm_api_token_id = var.proxmox_user
+#   pm_api_token_secret = var.proxmox_token
   pm_tls_insecure = true
+  pm_user = var.proxmox_user
+  pm_password = var.proxmox_token
 }
 
 resource "proxmox_lxc" "k3s-masters" { 
@@ -41,7 +43,11 @@ resource "proxmox_lxc" "k3s-masters" {
     ostemplate = var.lxc_template
     password = var.container_password
     target_node = var.proxmox_node
-    unprivileged = true
+    unprivileged = false
+
+    features {
+      nesting = true
+    }
 }
 
 resource "proxmox_lxc" "k3s-workers" { 
@@ -71,7 +77,11 @@ resource "proxmox_lxc" "k3s-workers" {
     ostemplate = var.lxc_template
     password = var.container_password
     target_node = var.proxmox_node
-    unprivileged = true
+    unprivileged = false
+
+    features {
+      nesting = true
+    }
 }
 
 resource "proxmox_lxc" "postgres-0" { 
@@ -86,6 +96,35 @@ resource "proxmox_lxc" "postgres-0" {
         name = "eth0"
         bridge = "vmbr0"
         ip = "192.168.0.250/24"
+        gw = "192.168.0.10"
+        firewall = true
+    }
+
+    rootfs {
+        storage = "local-lvm"
+        size    = "50G"
+    }
+
+    ssh_public_keys = var.ssh_public_keys
+
+    ostemplate = var.lxc_template
+    password = var.container_password
+    target_node = var.proxmox_node
+    unprivileged = true
+}
+
+resource "proxmox_lxc" "influxdb-0" { 
+    vmid = 801
+    hostname = "influxdb-0"
+    cores = 2
+    memory = "2048"
+    swap = "1024"
+    onboot = true
+
+    network {
+        name = "eth0"
+        bridge = "vmbr0"
+        ip = "192.168.0.251/24"
         gw = "192.168.0.10"
         firewall = true
     }

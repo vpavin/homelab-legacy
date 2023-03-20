@@ -9,4 +9,15 @@
   - 201
   - 202
   - 203
-  - 800
+
+- name: push kernel boot configuration
+  shell: |
+    pct set {{ item }} --mp0 /usr/lib/modules/$(uname -r),mp=/lib/modules/$(uname -r),ro=1,backup=0
+    pct push {{ item }} /boot/config-$(uname -r) /boot/config-$(uname -r)
+  with_items:
+  - 100
+  - 101
+  - 200
+  - 201
+  - 202
+  - 203
